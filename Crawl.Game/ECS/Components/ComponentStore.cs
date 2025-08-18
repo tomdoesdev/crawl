@@ -1,3 +1,6 @@
+using Crawl.DataStructures;
+using Crawl.ECS.Entities;
+
 namespace Crawl.ECS.Components;
 public interface IComponentStore
 {
@@ -27,7 +30,7 @@ public interface IComponentStore
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
-    IComponent Get(Entity entity);
+    TResult Get<TResult>(Entity entity) where TResult : struct, IComponent;
     
     /// <summary>
     /// Gets the value associated with the given Entity
@@ -74,9 +77,9 @@ public class ComponentStore<T> : IComponentStore where T : struct, IComponent
         _store.Remove(entity);
     }
 
-    public IComponent Get(Entity entity)
+    public TResult Get<TResult>(Entity entity)  where TResult : struct, IComponent
     {
-        return _store.Get(entity);
+        return (TResult)(IComponent)_store.Get(entity);
     }
 
     public bool TryGet(Entity entity, out IComponent component)
@@ -101,7 +104,7 @@ public class ComponentStore<T> : IComponentStore where T : struct, IComponent
         var components = _store.GetAll();
         var result = new IComponent[components.Length];
         
-        for (int i = 0; i < components.Length; i++)
+        for (var i = 0; i < components.Length; i++)
         {
             result[i] = components[i];
         }

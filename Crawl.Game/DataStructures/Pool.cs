@@ -1,4 +1,4 @@
-namespace Crawl.ECS;
+namespace Crawl.DataStructures;
 
 public class Pool<T>(uint maxCapacity = Pool<T>.DefaultMaxCapacity)
     where T : notnull

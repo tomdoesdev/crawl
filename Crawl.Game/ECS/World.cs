@@ -1,3 +1,4 @@
+using Crawl.DataStructures;
 using Crawl.ECS.Components;
 
 namespace Crawl.ECS;

@@ -1,13 +1,6 @@
-namespace Crawl.ECS;
-public readonly record struct Entity(uint Id)
-{
-    public readonly uint Id = Id;
-}
+using Crawl.DataStructures;
 
-public enum SentinelEntities : uint
-{
-    Null = 0,
-}
+namespace Crawl.ECS.Entities;
 
 public class EntityManager(uint maxReleasedIdCapacity = EntityManager.DefaultMaxReleaseCapacity)
 {
