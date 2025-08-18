@@ -9,7 +9,7 @@ namespace Crawl.Test;
 // Test component for our tests
 public readonly struct TestComponent(int value) : IComponent
 {
-    private int Value { get; } = value;
+    public int Value { get; } = value;
     public ComponentType ComponentType => ComponentType.Position; // Using Position for simplicity
 
     public override bool Equals(object? obj)
@@ -436,6 +436,59 @@ public class SparseSetTests
         
         Assert.True(highCapacitySparseSet.Has(highIdEntity));
         Assert.Equal(component, highCapacitySparseSet.Get(highIdEntity));
+    }
+
+    [Fact]
+    public void TryRemove_ExistingEntity_ReturnsTrue()
+    {
+        _sparseSet.Add(_entity1, new TestComponent(100));
+        
+        var result = _sparseSet.TryRemove(_entity1);
+        
+        Assert.True(result);
+        Assert.False(_sparseSet.Has(_entity1));
+        Assert.Equal(0, _sparseSet.Count);
+    }
+
+    [Fact]
+    public void TryRemove_NonExistentEntity_ReturnsFalse()
+    {
+        var result = _sparseSet.TryRemove(_entity1);
+        
+        Assert.False(result);
+        Assert.Equal(0, _sparseSet.Count);
+    }
+
+    [Fact]
+    public void RemoveRange_MultipleEntities_RemovesAll()
+    {
+        _sparseSet.Add(_entity1, new TestComponent(1));
+        _sparseSet.Add(_entity2, new TestComponent(2));
+        _sparseSet.Add(_entity3, new TestComponent(3));
+        
+        var entitiesToRemove = new[] { _entity1, _entity3 };
+        _sparseSet.RemoveRange(entitiesToRemove);
+        
+        Assert.False(_sparseSet.Has(_entity1));
+        Assert.True(_sparseSet.Has(_entity2));
+        Assert.False(_sparseSet.Has(_entity3));
+        Assert.Equal(1, _sparseSet.Count);
+    }
+
+    [Fact]
+    public void RemoveWhere_WithPredicate_RemovesMatchingEntities()
+    {
+        _sparseSet.Add(_entity1, new TestComponent(10));
+        _sparseSet.Add(_entity2, new TestComponent(20));
+        _sparseSet.Add(_entity3, new TestComponent(30));
+        
+        var removedCount = _sparseSet.RemoveWhere((entity, component) => component.Value >= 20);
+        
+        Assert.Equal(2, removedCount);
+        Assert.True(_sparseSet.Has(_entity1));
+        Assert.False(_sparseSet.Has(_entity2));
+        Assert.False(_sparseSet.Has(_entity3));
+        Assert.Equal(1, _sparseSet.Count);
     }
 
     #endregion

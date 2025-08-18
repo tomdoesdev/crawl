@@ -1,0 +1,324 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 57 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/" /p:OutDir="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0/" /p:OutputPath="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0/" /p:PublishDir="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/publish/" in /Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1
+// command took 0.54 sec and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/" /p:OutDir="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0/" /p:OutputPath="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0/" /p:PublishDir="/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/publish/" --output "/Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0/" in /Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1
+// command took 4.16 sec and exited with 0
+// ***** Done, took 00:00:04 (4.74 sec)   *****
+// Found 57 benchmarks:
+//   SparseSetBenchmarks.Add_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Add_WithGrowth: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.TryAdd_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.TryAdd_WithDuplicates: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Get_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Get_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.TryGet_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.TryGet_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Has_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Has_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Remove_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Remove_EveryOther: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Remove_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Remove_NonExistent: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.GetAll_Iterate: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.GetAll_IterateWithSpan: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.MixedOperations_AddRemoveGet: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Churn_AddRemoveCycle: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Clear_FullSet: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+//   SparseSetBenchmarks.Add_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Add_WithGrowth: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.TryAdd_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.TryAdd_WithDuplicates: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Get_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Get_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.TryGet_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.TryGet_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Has_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Has_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Remove_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Remove_EveryOther: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Remove_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Remove_NonExistent: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.GetAll_Iterate: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.GetAll_IterateWithSpan: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.MixedOperations_AddRemoveGet: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Churn_AddRemoveCycle: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Clear_FullSet: .NET 9.0(Runtime=.NET 9.0) [EntityCount=10000]
+//   SparseSetBenchmarks.Add_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Add_WithGrowth: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.TryAdd_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.TryAdd_WithDuplicates: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Get_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Get_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.TryGet_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.TryGet_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Has_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Has_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Remove_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Remove_EveryOther: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Remove_Random: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Remove_NonExistent: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.GetAll_Iterate: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.GetAll_IterateWithSpan: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.MixedOperations_AddRemoveGet: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Churn_AddRemoveCycle: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+//   SparseSetBenchmarks.Clear_FullSet: .NET 9.0(Runtime=.NET 9.0) [EntityCount=100000]
+
+// **************************
+// Benchmark: SparseSetBenchmarks.Add_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "Crawl.Benchmark-.NET 9.0-1.dll" --anonymousPipes 106 107 --benchmarkName "Crawl.Benchmark.SparseSetBenchmarks.Add_Sequential(EntityCount: 1000)" --job ".NET 9.0" --benchmarkId 0 in /Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.2
+// Runtime=.NET 9.0.0 (9.0.24.52809), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: .NET 9.0
+
+OverheadJitting  1: 1 op, 61333.00 ns, 61.3330 us/op
+WorkloadJitting  1: 1 op, 125500.00 ns, 125.5000 us/op
+
+OverheadJitting  2: 16 op, 115500.00 ns, 7.2188 us/op
+WorkloadJitting  2: 16 op, 1504166.00 ns, 94.0104 us/op
+
+WorkloadPilot    1: 16 op, 441041.00 ns, 27.5651 us/op
+WorkloadPilot    2: 32 op, 886166.00 ns, 27.6927 us/op
+WorkloadPilot    3: 64 op, 1736750.00 ns, 27.1367 us/op
+WorkloadPilot    4: 128 op, 3465708.00 ns, 27.0758 us/op
+WorkloadPilot    5: 256 op, 6937208.00 ns, 27.0985 us/op
+WorkloadPilot    6: 512 op, 13451667.00 ns, 26.2728 us/op
+WorkloadPilot    7: 1024 op, 26838875.00 ns, 26.2098 us/op
+WorkloadPilot    8: 2048 op, 52988125.00 ns, 25.8731 us/op
+WorkloadPilot    9: 4096 op, 106235459.00 ns, 25.9364 us/op
+WorkloadPilot   10: 8192 op, 76987625.00 ns, 9.3979 us/op
+WorkloadPilot   11: 16384 op, 61906959.00 ns, 3.7785 us/op
+WorkloadPilot   12: 32768 op, 123540959.00 ns, 3.7702 us/op
+WorkloadPilot   13: 65536 op, 246671292.00 ns, 3.7639 us/op
+WorkloadPilot   14: 131072 op, 493774791.00 ns, 3.7672 us/op
+WorkloadPilot   15: 262144 op, 986352459.00 ns, 3.7626 us/op
+
+OverheadWarmup   1: 262144 op, 512125.00 ns, 1.9536 ns/op
+OverheadWarmup   2: 262144 op, 500958.00 ns, 1.9110 ns/op
+OverheadWarmup   3: 262144 op, 504459.00 ns, 1.9244 ns/op
+OverheadWarmup   4: 262144 op, 498166.00 ns, 1.9004 ns/op
+OverheadWarmup   5: 262144 op, 500625.00 ns, 1.9097 ns/op
+OverheadWarmup   6: 262144 op, 498250.00 ns, 1.9007 ns/op
+
+OverheadActual   1: 262144 op, 505542.00 ns, 1.9285 ns/op
+OverheadActual   2: 262144 op, 498917.00 ns, 1.9032 ns/op
+OverheadActual   3: 262144 op, 510000.00 ns, 1.9455 ns/op
+OverheadActual   4: 262144 op, 504500.00 ns, 1.9245 ns/op
+OverheadActual   5: 262144 op, 499208.00 ns, 1.9043 ns/op
+OverheadActual   6: 262144 op, 500542.00 ns, 1.9094 ns/op
+OverheadActual   7: 262144 op, 499666.00 ns, 1.9061 ns/op
+OverheadActual   8: 262144 op, 498000.00 ns, 1.8997 ns/op
+OverheadActual   9: 262144 op, 500625.00 ns, 1.9097 ns/op
+OverheadActual  10: 262144 op, 498791.00 ns, 1.9027 ns/op
+OverheadActual  11: 262144 op, 494459.00 ns, 1.8862 ns/op
+OverheadActual  12: 262144 op, 461334.00 ns, 1.7598 ns/op
+OverheadActual  13: 262144 op, 465959.00 ns, 1.7775 ns/op
+OverheadActual  14: 262144 op, 506000.00 ns, 1.9302 ns/op
+OverheadActual  15: 262144 op, 509375.00 ns, 1.9431 ns/op
+
+OverheadWarmup   1: 262144 op, 512584.00 ns, 1.9554 ns/op
+OverheadWarmup   2: 262144 op, 507791.00 ns, 1.9371 ns/op
+OverheadWarmup   3: 262144 op, 506083.00 ns, 1.9306 ns/op
+OverheadWarmup   4: 262144 op, 506458.00 ns, 1.9320 ns/op
+OverheadWarmup   5: 262144 op, 509709.00 ns, 1.9444 ns/op
+OverheadWarmup   6: 262144 op, 511084.00 ns, 1.9496 ns/op
+OverheadWarmup   7: 262144 op, 498583.00 ns, 1.9019 ns/op
+OverheadWarmup   8: 262144 op, 500750.00 ns, 1.9102 ns/op
+OverheadWarmup   9: 262144 op, 505708.00 ns, 1.9291 ns/op
+OverheadWarmup  10: 262144 op, 498917.00 ns, 1.9032 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 262144 op, 989120917.00 ns, 3.7732 us/op
+WorkloadActual   2: 262144 op, 1221300209.00 ns, 4.6589 us/op
+WorkloadActual   3: 262144 op, 996161959.00 ns, 3.8001 us/op
+WorkloadActual   4: 262144 op, 984218708.00 ns, 3.7545 us/op
+WorkloadActual   5: 262144 op, 983936667.00 ns, 3.7534 us/op
+WorkloadActual   6: 262144 op, 980798000.00 ns, 3.7414 us/op
+WorkloadActual   7: 262144 op, 985418333.00 ns, 3.7591 us/op
+WorkloadActual   8: 262144 op, 984415584.00 ns, 3.7552 us/op
+WorkloadActual   9: 262144 op, 983665834.00 ns, 3.7524 us/op
+WorkloadActual  10: 262144 op, 985786125.00 ns, 3.7605 us/op
+WorkloadActual  11: 262144 op, 984100583.00 ns, 3.7540 us/op
+WorkloadActual  12: 262144 op, 985865875.00 ns, 3.7608 us/op
+WorkloadActual  13: 262144 op, 990224708.00 ns, 3.7774 us/op
+WorkloadActual  14: 262144 op, 1017826542.00 ns, 3.8827 us/op
+WorkloadActual  15: 262144 op, 992319084.00 ns, 3.7854 us/op
+
+// AfterActualRun
+WorkloadResult   1: 262144 op, 988621251.00 ns, 3.7713 us/op
+WorkloadResult   2: 262144 op, 995662293.00 ns, 3.7982 us/op
+WorkloadResult   3: 262144 op, 983719042.00 ns, 3.7526 us/op
+WorkloadResult   4: 262144 op, 983437001.00 ns, 3.7515 us/op
+WorkloadResult   5: 262144 op, 980298334.00 ns, 3.7395 us/op
+WorkloadResult   6: 262144 op, 984918667.00 ns, 3.7572 us/op
+WorkloadResult   7: 262144 op, 983915918.00 ns, 3.7533 us/op
+WorkloadResult   8: 262144 op, 983166168.00 ns, 3.7505 us/op
+WorkloadResult   9: 262144 op, 985286459.00 ns, 3.7586 us/op
+WorkloadResult  10: 262144 op, 983600917.00 ns, 3.7521 us/op
+WorkloadResult  11: 262144 op, 985366209.00 ns, 3.7589 us/op
+WorkloadResult  12: 262144 op, 989725042.00 ns, 3.7755 us/op
+WorkloadResult  13: 262144 op, 991819418.00 ns, 3.7835 us/op
+// GC:  1047 26 0 8770289664 262144
+// Threading:  0 0 262144
+
+// AfterAll
+// Benchmark Process 30471 has exited with code 0.
+
+Mean = 3.762 μs, StdErr = 0.004 μs (0.12%), N = 13, StdDev = 0.016 μs
+Min = 3.740 μs, Q1 = 3.752 μs, Median = 3.757 μs, Q3 = 3.771 μs, Max = 3.798 μs
+IQR = 0.019 μs, LowerFence = 3.723 μs, UpperFence = 3.800 μs
+ConfidenceInterval = [3.743 μs; 3.781 μs] (CI 99.9%), Margin = 0.019 μs (0.51% of Mean)
+Skewness = 0.86, Kurtosis = 2.69, MValue = 2
+
+// ** Remained 56 (98.2%) benchmark(s) to run. Estimated finish 2025-08-19 0:06 (0h 17m from now) **
+// **************************
+// Benchmark: SparseSetBenchmarks.Add_WithGrowth: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "Crawl.Benchmark-.NET 9.0-1.dll" --anonymousPipes 106 107 --benchmarkName "Crawl.Benchmark.SparseSetBenchmarks.Add_WithGrowth(EntityCount: 1000)" --job ".NET 9.0" --benchmarkId 1 in /Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.2
+// Runtime=.NET 9.0.0 (9.0.24.52809), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: .NET 9.0
+
+OverheadJitting  1: 1 op, 60000.00 ns, 60.0000 us/op
+WorkloadJitting  1: 1 op, 121375.00 ns, 121.3750 us/op
+
+OverheadJitting  2: 16 op, 112167.00 ns, 7.0104 us/op
+WorkloadJitting  2: 16 op, 1502041.00 ns, 93.8776 us/op
+
+WorkloadPilot    1: 16 op, 445375.00 ns, 27.8359 us/op
+WorkloadPilot    2: 32 op, 907333.00 ns, 28.3542 us/op
+WorkloadPilot    3: 64 op, 1762416.00 ns, 27.5378 us/op
+WorkloadPilot    4: 128 op, 3464417.00 ns, 27.0658 us/op
+WorkloadPilot    5: 256 op, 7004125.00 ns, 27.3599 us/op
+WorkloadPilot    6: 512 op, 13575167.00 ns, 26.5140 us/op
+WorkloadPilot    7: 1024 op, 27186583.00 ns, 26.5494 us/op
+WorkloadPilot    8: 2048 op, 54209084.00 ns, 26.4693 us/op
+WorkloadPilot    9: 4096 op, 64427334.00 ns, 15.7293 us/op
+WorkloadPilot   10: 8192 op, 31858375.00 ns, 3.8890 us/op
+WorkloadPilot   11: 16384 op, 73899292.00 ns, 4.5105 us/op
+WorkloadPilot   12: 32768 op, 134152958.00 ns, 4.0940 us/op
+WorkloadPilot   13: 65536 op, 251284167.00 ns, 3.8343 us/op
+WorkloadPilot   14: 131072 op, 501742750.00 ns, 3.8280 us/op
+
+OverheadWarmup   1: 131072 op, 253042.00 ns, 1.9306 ns/op
+OverheadWarmup   2: 131072 op, 253917.00 ns, 1.9372 ns/op
+OverheadWarmup   3: 131072 op, 257084.00 ns, 1.9614 ns/op
+OverheadWarmup   4: 131072 op, 252500.00 ns, 1.9264 ns/op
+OverheadWarmup   5: 131072 op, 256667.00 ns, 1.9582 ns/op
+OverheadWarmup   6: 131072 op, 253583.00 ns, 1.9347 ns/op
+
+OverheadActual   1: 131072 op, 251875.00 ns, 1.9217 ns/op
+OverheadActual   2: 131072 op, 253041.00 ns, 1.9305 ns/op
+OverheadActual   3: 131072 op, 251667.00 ns, 1.9201 ns/op
+OverheadActual   4: 131072 op, 251667.00 ns, 1.9201 ns/op
+OverheadActual   5: 131072 op, 256416.00 ns, 1.9563 ns/op
+OverheadActual   6: 131072 op, 252667.00 ns, 1.9277 ns/op
+OverheadActual   7: 131072 op, 251625.00 ns, 1.9197 ns/op
+OverheadActual   8: 131072 op, 253750.00 ns, 1.9360 ns/op
+OverheadActual   9: 131072 op, 252375.00 ns, 1.9255 ns/op
+OverheadActual  10: 131072 op, 252666.00 ns, 1.9277 ns/op
+OverheadActual  11: 131072 op, 252708.00 ns, 1.9280 ns/op
+OverheadActual  12: 131072 op, 254958.00 ns, 1.9452 ns/op
+OverheadActual  13: 131072 op, 252875.00 ns, 1.9293 ns/op
+OverheadActual  14: 131072 op, 253500.00 ns, 1.9341 ns/op
+OverheadActual  15: 131072 op, 252542.00 ns, 1.9267 ns/op
+
+OverheadWarmup   1: 131072 op, 252916.00 ns, 1.9296 ns/op
+OverheadWarmup   2: 131072 op, 252167.00 ns, 1.9239 ns/op
+OverheadWarmup   3: 131072 op, 254792.00 ns, 1.9439 ns/op
+OverheadWarmup   4: 131072 op, 253375.00 ns, 1.9331 ns/op
+OverheadWarmup   5: 131072 op, 253917.00 ns, 1.9372 ns/op
+OverheadWarmup   6: 131072 op, 260166.00 ns, 1.9849 ns/op
+OverheadWarmup   7: 131072 op, 251917.00 ns, 1.9220 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 131072 op, 507210208.00 ns, 3.8697 us/op
+WorkloadActual   2: 131072 op, 500793041.00 ns, 3.8207 us/op
+WorkloadActual   3: 131072 op, 500093125.00 ns, 3.8154 us/op
+WorkloadActual   4: 131072 op, 502627584.00 ns, 3.8347 us/op
+WorkloadActual   5: 131072 op, 503963166.00 ns, 3.8449 us/op
+WorkloadActual   6: 131072 op, 505776375.00 ns, 3.8588 us/op
+WorkloadActual   7: 131072 op, 500697375.00 ns, 3.8200 us/op
+WorkloadActual   8: 131072 op, 504548583.00 ns, 3.8494 us/op
+WorkloadActual   9: 131072 op, 500557750.00 ns, 3.8190 us/op
+WorkloadActual  10: 131072 op, 500370250.00 ns, 3.8175 us/op
+WorkloadActual  11: 131072 op, 502827459.00 ns, 3.8363 us/op
+WorkloadActual  12: 131072 op, 502167125.00 ns, 3.8312 us/op
+WorkloadActual  13: 131072 op, 499953209.00 ns, 3.8143 us/op
+WorkloadActual  14: 131072 op, 499789208.00 ns, 3.8131 us/op
+WorkloadActual  15: 131072 op, 499500291.00 ns, 3.8109 us/op
+
+// AfterActualRun
+WorkloadResult   1: 131072 op, 506957541.00 ns, 3.8678 us/op
+WorkloadResult   2: 131072 op, 500540374.00 ns, 3.8188 us/op
+WorkloadResult   3: 131072 op, 499840458.00 ns, 3.8135 us/op
+WorkloadResult   4: 131072 op, 502374917.00 ns, 3.8328 us/op
+WorkloadResult   5: 131072 op, 503710499.00 ns, 3.8430 us/op
+WorkloadResult   6: 131072 op, 505523708.00 ns, 3.8568 us/op
+WorkloadResult   7: 131072 op, 500444708.00 ns, 3.8181 us/op
+WorkloadResult   8: 131072 op, 504295916.00 ns, 3.8475 us/op
+WorkloadResult   9: 131072 op, 500305083.00 ns, 3.8170 us/op
+WorkloadResult  10: 131072 op, 500117583.00 ns, 3.8156 us/op
+WorkloadResult  11: 131072 op, 502574792.00 ns, 3.8343 us/op
+WorkloadResult  12: 131072 op, 501914458.00 ns, 3.8293 us/op
+WorkloadResult  13: 131072 op, 499700542.00 ns, 3.8124 us/op
+WorkloadResult  14: 131072 op, 499536541.00 ns, 3.8112 us/op
+WorkloadResult  15: 131072 op, 499247624.00 ns, 3.8090 us/op
+// GC:  515 17 0 4312793088 131072
+// Threading:  0 0 131072
+
+// AfterAll
+// Benchmark Process 30490 has exited with code 0.
+
+Mean = 3.828 μs, StdErr = 0.005 μs (0.12%), N = 15, StdDev = 0.018 μs
+Min = 3.809 μs, Q1 = 3.815 μs, Median = 3.819 μs, Q3 = 3.839 μs, Max = 3.868 μs
+IQR = 0.024 μs, LowerFence = 3.778 μs, UpperFence = 3.875 μs
+ConfidenceInterval = [3.809 μs; 3.848 μs] (CI 99.9%), Margin = 0.019 μs (0.51% of Mean)
+Skewness = 0.75, Kurtosis = 2.2, MValue = 2
+
+// ** Remained 55 (96.5%) benchmark(s) to run. Estimated finish 2025-08-19 0:01 (0h 12m from now) **
+// **************************
+// Benchmark: SparseSetBenchmarks.TryAdd_Sequential: .NET 9.0(Runtime=.NET 9.0) [EntityCount=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "Crawl.Benchmark-.NET 9.0-1.dll" --anonymousPipes 106 107 --benchmarkName "Crawl.Benchmark.SparseSetBenchmarks.TryAdd_Sequential(EntityCount: 1000)" --job ".NET 9.0" --benchmarkId 2 in /Users/tom/dev/Crawl/Crawl.Benchmark/bin/Release/net9.0/Crawl.Benchmark-.NET 9.0-1/bin/Release/net9.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.2
+// Runtime=.NET 9.0.0 (9.0.24.52809), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: .NET 9.0
+
+OverheadJitting  1: 1 op, 60917.00 ns, 60.9170 us/op
+WorkloadJitting  1: 1 op, 182750.00 ns, 182.7500 us/op
+
+OverheadJitting  2: 16 op, 110750.00 ns, 6.9219 us/op
+WorkloadJitting  2: 16 op, 1098834.00 ns, 68.6771 us/op
+
+WorkloadPilot    1: 16 op, 407083.00 ns, 25.4427 us/op
+WorkloadPilot    2: 32 op, 796000.00 ns, 24.8750 us/op
+WorkloadPilot    3: 64 op, 1552166.00 ns, 24.2526 us/op
+WorkloadPilot    4: 128 op, 3121416.00 ns, 24.3861 us/op
+WorkloadPilot    5: 256 op, 6380375.00 ns, 24.9233 us/op
+WorkloadPilot    6: 512 op, 12273708.00 ns, 23.9721 us/op
+Workload
