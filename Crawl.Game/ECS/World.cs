@@ -1,3 +1,5 @@
+using Crawl.ECS.Components;
+
 namespace Crawl.ECS;
 
 public class World
