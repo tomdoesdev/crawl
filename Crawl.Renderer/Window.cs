@@ -23,7 +23,7 @@ public class Window : GameWindow
     {
         GL.Clear(ClearBufferMask.ColorBufferBit);
         GL.ClearColor(Color.Navy);
-        _scene.Draw();
+        _scene.Render();
         
         SwapBuffers();
         base.OnRenderFrame(args);
