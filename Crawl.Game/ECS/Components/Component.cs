@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace Crawl.ECS.Components;
 
 public interface IComponent

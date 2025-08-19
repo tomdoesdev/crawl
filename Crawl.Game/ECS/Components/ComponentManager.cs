@@ -1,5 +1,3 @@
-using Crawl.ECS.Entities;
-
 namespace Crawl.ECS.Components;
 
 
@@ -9,7 +7,7 @@ public class ComponentManager
     private readonly Dictionary<ComponentType, IComponentStore> _stores = new();
     private readonly Dictionary<Type, ComponentType> _componentTypes = new();
     
-    public void AddComponent<T>(Entity entity, T component) where T : struct, IComponent
+    public void AddComponent<T>(Entities.Entity entity, T component) where T : struct, IComponent
     {
         if (!_componentTypes.ContainsKey(component.GetType()))
         {
@@ -29,7 +27,7 @@ public class ComponentManager
         return store;
     }
 
-    public T GetComponent<T>(Entity entity) where T : struct, IComponent
+    public T GetComponent<T>(Entities.Entity entity) where T : struct, IComponent
     {
         if (!_componentTypes.TryGetValue(typeof(T), out var componentType))
         {
