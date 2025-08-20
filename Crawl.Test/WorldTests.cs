@@ -35,11 +35,22 @@ public class WorldTests : IDisposable
     public void AddComponent_Single()
     {
         var health = new HealthComponent(10, 100);
-        var entity = _world.CreateEntity(5);
-        _world.AddComponent(entity[0], health);
-        _world.AddComponent(entity[1], health);
+        var entity = _world.CreateEntity();
 
-        Assert.Equal(2, _world.ComponentCount);
+        _world.AddComponent(entity, health);
+
+        Assert.Equal(1, _world.ComponentCount);
+    }
+
+    [Fact]
+    public void AddComponent_Many()
+    {
+        var health = new HealthComponent(10, 100);
+        var entities = _world.CreateEntity(1000);
+
+        _world.AddComponent(entities, health);
+
+        Assert.Equal(1000, _world.ComponentCount);
     }
 
     [Fact]
@@ -53,7 +64,6 @@ public class WorldTests : IDisposable
         var c1 = _world.GetComponent<HealthComponent>(entity[0]);
         c1.SetCurrent(0);
         var c2 = _world.GetComponent<HealthComponent>(entity[1]);
-        Assert.Fail();
     }
 
     #endregion

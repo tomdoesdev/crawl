@@ -14,6 +14,8 @@ public interface IComponentStore
     /// <param name="component"></param>
     void Add(Entity entity, IComponent component);
 
+    void Add(Entity[] entities, IComponent component);
+
     /// <summary>
     ///     Adds a component to the store, returning true if sucessful
     /// </summary>
@@ -70,6 +72,14 @@ public class ComponentStore<T> : IComponentStore where T : struct, IComponent
             throw new ArgumentException($"Expected component of type {typeof(T)}, got {component.GetType()}");
 
         _store.Add(entity, typedComponent);
+    }
+
+    public void Add(Entity[] entities, IComponent component)
+    {
+        if (component is not T typedComponent)
+            throw new ArgumentException($"Expected component of type {typeof(T)}, got {component.GetType()}");
+
+        _store.Add(entities, typedComponent);
     }
 
     public bool TryAdd(Entity entity, IComponent component)

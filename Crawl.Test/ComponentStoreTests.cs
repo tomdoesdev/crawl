@@ -1,6 +1,6 @@
-using Crawl.DataStructures;
 using Crawl.ECS.Components;
 using Crawl.ECS.Entities;
+using Crawl.Exceptions;
 
 namespace Crawl.Test;
 
@@ -104,7 +104,7 @@ public class ComponentStoreTests
 
         _positionStore.Add(_entity1, pos1);
 
-        Assert.Throws<DuplicateComponentException>(() => _positionStore.Add(_entity1, pos2));
+        Assert.Throws<ComponentExistsException>(() => _positionStore.Add(_entity1, pos2));
     }
 
     [Fact]

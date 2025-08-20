@@ -1,36 +1,9 @@
 using System.Runtime.CompilerServices;
 using Crawl.ECS.Components;
 using Crawl.ECS.Entities;
+using Crawl.Exceptions;
 
 namespace Crawl.DataStructures;
-
-public class DuplicateComponentException : Exception
-{
-    public DuplicateComponentException(string message) : base(message)
-    {
-    }
-
-    public DuplicateComponentException(string message, Exception innerException)
-        : base(message, innerException)
-    {
-    }
-}
-
-public class ComponentNotFoundException : Exception
-{
-    public ComponentNotFoundException()
-    {
-    }
-
-    public ComponentNotFoundException(string message) : base(message)
-    {
-    }
-
-    public ComponentNotFoundException(string message, Exception innerException)
-        : base(message, innerException)
-    {
-    }
-}
 
 /// <summary>
 ///     Cache-optimized entry combining entity and component data for better memory layout
@@ -123,7 +96,7 @@ public class SparseSet<T> where T : struct, IComponent
         ValidateEntityId(entity.Id);
 
         if (Has(entity))
-            throw new DuplicateComponentException($"Entity {entity.Id} already has component {typeof(T).Name}");
+            throw new ComponentExistsException($"Entity {entity.Id} already has component {typeof(T).Name}");
 
         EnsureCapacity(Count + 1);
 
@@ -134,6 +107,45 @@ public class SparseSet<T> where T : struct, IComponent
         SetSparseIndex(entity.Id, Count);
 
         Count++;
+    }
+
+    /// <summary>
+    ///     Adds the same component to multiple entities in a single optimized batch operation.
+    ///     Maximizes cache performance by minimizing memory allocations and optimizing memory access patterns.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Add(Entity[] entities, T value)
+    {
+        if (entities.Length == 0)
+            return;
+
+        // Ensure capacity for all new entities at once
+        EnsureCapacity(Count + entities.Length);
+
+        // Pre-validate all entities and check for duplicates
+        for (var i = 0; i < entities.Length; i++)
+        {
+            ValidateEntityId(entities[i].Id);
+            if (Has(entities[i]))
+                throw new ComponentExistsException(
+                    $"Entity {entities[i].Id} already has component {typeof(T).Name}");
+        }
+
+
+        // Batch add all entities using optimized memory access
+        var currentCount = Count;
+        for (var i = 0; i < entities.Length; i++)
+        {
+            var entity = entities[i];
+
+            // Single write to packed structure for better cache performance
+            _dense[currentCount + i] = new SparseSetEntry<T>(entity, value);
+
+            // Update sparse array to point to dense index
+            SetSparseIndex(entity.Id, currentCount + i);
+        }
+
+        Count += entities.Length;
     }
 
     /// <summary>
