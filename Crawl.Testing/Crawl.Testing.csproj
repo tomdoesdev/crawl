@@ -18,4 +18,8 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Crawl.Game\Crawl.Game.csproj"/>
+    </ItemGroup>
+
 </Project>

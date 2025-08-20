@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawl.Game", "Crawl.Game\Cr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawl.Testing", "Crawl.Testing\Crawl.Testing.csproj", "{E533D62A-D874-430F-AFA4-C59820F1FB65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawl.Client", "Crawl.Client\Crawl.Client.csproj", "{ABDDBD46-FEB9-4F4D-9EC5-5A4B2BC69E0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{E533D62A-D874-430F-AFA4-C59820F1FB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E533D62A-D874-430F-AFA4-C59820F1FB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E533D62A-D874-430F-AFA4-C59820F1FB65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDDBD46-FEB9-4F4D-9EC5-5A4B2BC69E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDDBD46-FEB9-4F4D-9EC5-5A4B2BC69E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDDBD46-FEB9-4F4D-9EC5-5A4B2BC69E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDDBD46-FEB9-4F4D-9EC5-5A4B2BC69E0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
