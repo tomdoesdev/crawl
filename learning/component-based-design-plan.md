@@ -37,14 +37,15 @@ This plan guides you through building a performant component-based object system
 **Goal**: Create game-specific components that leverage your sparse set architecture
 
 ### Tasks:
-- [ ] **3.1** Design ECS-compatible component interfaces (ComponentId, EntityId)
-- [ ] **3.2** PositionComponent (world coordinates) 
-- [ ] **3.3** SpriteComponent (rendering data)
-- [ ] **3.4** HealthComponent (HP management) - migrate from GameObject version
-- [ ] **3.5** InventoryComponent (item storage)
-- [ ] **3.6** WeaponComponent (attack stats)
-- [ ] **3.7** MovementComponent (speed, collision)
-- [ ] **3.8** Test: Create Hero and Enemy entities with multiple components in sparse sets
+- [x] **3.1** Design ECS-compatible component interfaces (empty IComponent marker) ✅
+- [x] **3.2** PositionComponent (world coordinates with 3D support) ✅
+- [ ] **3.3** HealthComponent (HP management with damage/healing methods)
+- [ ] **3.4** StatusEffectComponent (Boons/Banes system for buffs, debuffs, regen, DoT)
+- [ ] **3.5** SpriteComponent (rendering data)
+- [ ] **3.6** InventoryComponent (item storage)
+- [ ] **3.7** WeaponComponent (attack stats)
+- [ ] **3.8** MovementComponent (speed, collision)
+- [ ] **3.9** Test: Create Hero and Enemy entities with multiple components in sparse sets
 
 **Key Learning**: ECS component design, data-oriented patterns, entity composition
 

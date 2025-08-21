@@ -1,37 +1,44 @@
-using Crawl.Game.Exceptions;
+using Crawl.ECS.Exception;
 
 namespace Crawl.Game;
 
+/// <summary>
+///     Thread-safe ID pool that generates sequential uint IDs.
+///     uint.MaxValue is reserved as a 'null' or invalid ID.
+/// </summary>
+public class IdPool(uint startId = 0)
+{
+    private readonly Lock _lock = new();
+    private uint _nextId = startId;
+
+    public uint NewId()
+    {
+        lock (_lock)
+        {
+            return _nextId != uint.MaxValue
+                ? _nextId++
+                : throw new IdPoolExhaustedException($"ID pool exhausted at {uint.MaxValue}");
+        }
+    }
+}
+
+// Convenience static pools for backward compatibility and common use cases
 public static class GameObjectIdPool
 {
-    private static uint _nextId = 100;
-    private static readonly Lock Lock = new();
+    private static readonly IdPool Pool = new(100);
 
     public static uint NewId()
     {
-        lock (Lock)
-        {
-            //uint.MaxValue is reserved as a 'null' id.
-            return _nextId != uint.MaxValue
-                ? _nextId++
-                : throw new IdPoolExhaustedException("available GameObject ID pool exhausted.");
-        }
+        return Pool.NewId();
     }
 }
 
 public static class ComponentIdPool
 {
-    private static uint _nextId;
-    private static readonly Lock Lock = new();
+    private static readonly IdPool Pool = new();
 
     public static uint NewId()
     {
-        lock (Lock)
-        {
-            //uint.MaxValue is reserved as a 'null' id.
-            return _nextId != uint.MaxValue
-                ? _nextId++
-                : throw new IdPoolExhaustedException("available Component ID pool exhausted.");
-        }
+        return Pool.NewId();
     }
 }

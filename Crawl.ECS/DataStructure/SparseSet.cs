@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
-using Crawl.Game.ECS;
-using Crawl.Game.Exceptions;
+using Crawl.ECS.Component;
+using Crawl.ECS.Exception;
 
-namespace Crawl.Game.DataStructures;
+namespace Crawl.ECS.DataStructure;
 
 using EntityId = uint;
 
