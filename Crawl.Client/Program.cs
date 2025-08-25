@@ -1,15 +1,10 @@
 ﻿using Crawl.ECS;
 
-var timer = new TickTimer();
+using var timer = new TickTimer();
 
 timer.OnTick += tick =>
 {
     // Check if cancellation was requested
-    if (tick.CancellationToken.IsCancellationRequested)
-    {
-        Console.WriteLine("TickTimer is shutting down...");
-        return; // Exit early
-    }
 
     Console.Clear();
     Console.WriteLine($"Tick {tick.ElapsedGameTicks:F0} at {tick.TargetTps:F1} tps");
@@ -18,14 +13,19 @@ timer.OnTick += tick =>
     // tick.CancellationToken.ThrowIfCancellationRequested();
 };
 
-Console.WriteLine("Starting timer... Press any key to stop.");
+Console.WriteLine("Starting timer... Press any key to pause.");
 timer.Start();
-
-// Keep running until user presses a key
 Console.ReadKey();
-timer.Pause();
+
+timer.Stop();
+Console.WriteLine("Paused! Press any key to resume");
 Console.ReadLine();
-timer.Resume();
+
+timer.Start();
+Console.WriteLine("Resumed");
 
 Console.ReadLine();
+timer.Stop();
+Console.ReadKey();
+timer.Stop();
 timer.Stop();

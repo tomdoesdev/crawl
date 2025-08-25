@@ -1,4 +1,4 @@
-namespace Crawl.ECS.Exception;
+namespace Crawl.ECS.System;
 
 public class StageNotFoundException : NotFoundException
 {
@@ -10,7 +10,7 @@ public class StageNotFoundException : NotFoundException
     {
     }
 
-    public StageNotFoundException(string message, global::System.Exception inner) : base(message, inner)
+    public StageNotFoundException(string message, Exception inner) : base(message, inner)
     {
     }
 }

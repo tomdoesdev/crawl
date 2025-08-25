@@ -1,4 +1,4 @@
-using Crawl.ECS.Exception;
+using Crawl.ECS.Component;
 
 namespace Crawl.Game;
 

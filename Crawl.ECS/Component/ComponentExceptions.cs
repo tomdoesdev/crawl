@@ -1,6 +1,6 @@
-namespace Crawl.ECS.Exception;
+namespace Crawl.ECS.Component;
 
-public class IdPoolExhaustedException : global::System.Exception
+public class IdPoolExhaustedException : Exception
 {
     public IdPoolExhaustedException()
     {
@@ -10,7 +10,7 @@ public class IdPoolExhaustedException : global::System.Exception
     {
     }
 
-    public IdPoolExhaustedException(string message, global::System.Exception inner) : base(message, inner)
+    public IdPoolExhaustedException(string message, Exception inner) : base(message, inner)
     {
     }
 }
@@ -25,7 +25,7 @@ public class ComponentNotFoundException : NotFoundException
     {
     }
 
-    public ComponentNotFoundException(string message, global::System.Exception inner) : base(message, inner)
+    public ComponentNotFoundException(string message, Exception inner) : base(message, inner)
     {
     }
 }

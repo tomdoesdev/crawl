@@ -2,23 +2,33 @@ using System.Diagnostics;
 
 namespace Crawl.ECS;
 
-public readonly record struct TickInfo(double TargetTps, long ElapsedGameTicks, CancellationToken CancellationToken);
+public readonly record struct TickInfo(double TargetTps, long ElapsedGameTicks);
+
+public enum TickTimerState : byte
+{
+    Running,
+    Stopped
+}
 
 public sealed class TickTimer : IDisposable
 {
+    private readonly CancellationTokenSource _cancellationTokenSource;
     private readonly Lock _stateLock = new();
     private readonly Stopwatch _stopwatch;
-    private CancellationTokenSource? _cancellationTokenSource;
 
     private long _elapsedGameTicks;
-    private volatile bool _paused;
-    private volatile bool _running;
+
+
+    private volatile TickTimerState _state = TickTimerState.Stopped;
     private Task? _timingTask;
 
-    public TickTimer(double targetTps = 30D)
+
+    public TickTimer(double targetTps = 30D, CancellationToken cancellationToken = default)
     {
         if (targetTps <= 0)
             throw new ArgumentOutOfRangeException(nameof(targetTps), "Target TPS must be greater than zero");
+
+        _cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
 
         TargetTps = targetTps;
         _stopwatch = new Stopwatch();
@@ -28,12 +38,14 @@ public sealed class TickTimer : IDisposable
 
     public double ElapsedSeconds => _stopwatch.ElapsedMilliseconds / 1000.0;
     public long ElapsedGameTicks => Interlocked.Read(ref _elapsedGameTicks);
-    public bool IsRunning => _running;
-    public bool IsPaused => _paused;
+    public bool IsRunning => _state == TickTimerState.Running;
+
+    public bool IsStopped => _state == TickTimerState.Stopped;
 
     public void Dispose()
     {
-        Stop();
+        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource.Dispose();
     }
 
     public event Action<TickInfo>? OnTick;
@@ -42,13 +54,12 @@ public sealed class TickTimer : IDisposable
     {
         lock (_stateLock)
         {
-            if (_running) return;
+            if (IsRunning) return;
 
-            _cancellationTokenSource = new CancellationTokenSource();
             _stopwatch.Start();
-            _running = true;
+            _state = TickTimerState.Running;
 
-            _timingTask = Task.Run(() => TimingLoop(_cancellationTokenSource.Token), _cancellationTokenSource.Token);
+            _timingTask ??= Task.Run(() => TimingLoop(_cancellationTokenSource.Token), _cancellationTokenSource.Token);
         }
     }
 
@@ -56,60 +67,13 @@ public sealed class TickTimer : IDisposable
     {
         lock (_stateLock)
         {
-            if (!_running) return;
+            if (IsStopped) return;
 
-            _running = false;
-            _cancellationTokenSource?.Cancel();
             _stopwatch.Stop();
-
-            try
-            {
-                _timingTask?.Wait(TimeSpan.FromSeconds(1));
-            }
-            catch (AggregateException ex) when (ex.InnerException is OperationCanceledException)
-            {
-                // Expected when canceling
-            }
-
-            _cancellationTokenSource?.Dispose();
-            _cancellationTokenSource = null;
-            _timingTask = null;
+            _state = TickTimerState.Stopped;
         }
     }
 
-    public void Pause()
-    {
-        if (!_running) return;
-
-        lock (_stateLock)
-        {
-            if (_paused) return;
-
-            _paused = true;
-            _stopwatch.Stop();
-        }
-    }
-
-    public void Resume()
-    {
-        if (!_running) return;
-
-        lock (_stateLock)
-        {
-            if (!_paused) return;
-
-            _paused = false;
-            _stopwatch.Start();
-        }
-    }
-
-    public void Cancel()
-    {
-        lock (_stateLock)
-        {
-            _cancellationTokenSource?.Cancel();
-        }
-    }
 
     private void TimingLoop(CancellationToken cancellationToken)
     {
@@ -118,10 +82,10 @@ public sealed class TickTimer : IDisposable
 
         try
         {
-            while (!cancellationToken.IsCancellationRequested && _running)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 // If paused, just sleep and continue
-                if (_paused)
+                if (IsStopped)
                 {
                     Thread.Sleep(10);
                     continue;
@@ -132,7 +96,7 @@ public sealed class TickTimer : IDisposable
                 if (currentTime >= nextTickTime)
                 {
                     var currentTickCount = Interlocked.Increment(ref _elapsedGameTicks);
-                    OnTick?.Invoke(new TickInfo(TargetTps, currentTickCount, cancellationToken));
+                    OnTick?.Invoke(new TickInfo(TargetTps, currentTickCount));
                     nextTickTime += tickIntervalTicks;
                 }
                 else

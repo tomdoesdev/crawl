@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
+using Crawl.ECS;
 using Crawl.ECS.Component;
 using Crawl.ECS.DataStructure;
-using Crawl.ECS.Exception;
 using Xunit.Abstractions;
 
 namespace Crawl.Testing;

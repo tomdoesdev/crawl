@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Crawl.ECS.Component;
-using Crawl.ECS.Exception;
+using Crawl.ECS.Entity;
 
 namespace Crawl.ECS.DataStructure;
 
